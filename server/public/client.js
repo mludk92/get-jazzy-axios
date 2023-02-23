@@ -1,3 +1,7 @@
+// import { albumListArray } from "./albums.js"
+// import { artistListArray } from "./artist.js"
+// import { songListArray } from "./songs.js"
+
 console.log('script sourced');
 
 function getArtists() {

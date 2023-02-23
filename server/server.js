@@ -1,8 +1,31 @@
+
 const { request } = require('express');
 const express = require('express');
 
 const app = express();
 const PORT = 5001;
+
+// const  {songListArray}  = require('./modules/songs.js')
+// const  {albumListArray} = require('./modules/albums.js')
+// const  {artistListArray} = require('./modules/artist.js')
+// app.use( {songListArray} )
+// app.use( {albumListArray} )
+// app.use({artistListArray})
+
+const albumListArray = [
+    {
+        album: 'Night Whispers',
+        year: '1938',
+    },
+    {
+        album: 'Stomping At The Savoy',
+        year: '2006'
+    },
+    {
+        album: 'Mingus Ah Um',
+        year: '1959'
+    },
+];
 
 const artistListArray = [
     {
@@ -46,24 +69,11 @@ const songListArray = [
     },
 ];
 
-const albumListArray = [
-    {
-        album: 'Night Whispers',
-        year: '1938',
-    },
-    {
-        album: 'Stomping At The Savoy',
-        year: '2006'
-    },
-    {
-        album: 'Mingus Ah Um',
-        year: '1959'
-    },
-]
+
 
 app.use(express.json())
 app.use(express.static('server/public'));
-
+// app.use(express.static('server/modules'))
 app.get('/artist', (req, res) => {
     res.send(artistListArray);
 });
