@@ -46,6 +46,21 @@ const songListArray = [
     },
 ];
 
+const albumListArray = [
+    {
+        album: 'Night Whispers',
+        year: '1938',
+    },
+    {
+        album: 'Stomping At The Savoy',
+        year: '2006'
+    },
+    {
+        album: 'Mingus Ah Um',
+        year: '1959'
+    },
+]
+
 app.use(express.json())
 app.use(express.static('server/public'));
 
@@ -65,6 +80,19 @@ app.post('/song', (req,res)=> {
     console.log('req.body',req.body)
     let songToAdd = req.body
     songListArray.push(songToAdd)
+    res.sendStatus(201)
+})
+
+
+
+app.get('/album', (req,res)=> {
+    console.log('Request for Album')
+    res.send(albumListArray)
+})
+
+app.post('/album',(req,res) => {
+    let albumToAdd = req.body
+    albumListArray.push(albumToAdd)
     res.sendStatus(201)
 })
 

@@ -65,6 +65,38 @@ function addSongs(event){
    })
 }
 
+function getAlbums() {
+    axios.get('/album').then((response)=>{
+        console.log('this is the response',response)
+        let contentTableAlbum = document.querySelector('#albumTableBody')
+        let albumFromServer = response.data
+        contentTableAlbum.innerHTML = ''
+        for(let album of albumFromServer){
+            contentTableAlbum.innerHTML += `
+            <tr>
+                <td>${album.album}</td>
+                <td>${album.year}</td>
+            </tr>
+            `
+        }
+        
+    }).catch((error)=>{
+        alert('Something Went Wrong')
+    })
+}
+getAlbums()
 
+function addAlbums(event){
+    event.preventDefault()
+    let albumAdd = document.querySelector('#albumInput').value
+    let yearAdd = document.querySelector('#yearInput').value
+    let albumForServer ={
+        album:albumAdd,
+        year:yearAdd,
+    }
+    axios.post('album',albumForServer).then((response)=>{
+        getAlbums()
+    })
+}
 
 
