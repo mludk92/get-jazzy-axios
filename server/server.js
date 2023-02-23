@@ -1,3 +1,4 @@
+const { request } = require('express');
 const express = require('express');
 
 const app = express();
@@ -58,6 +59,14 @@ app.get('/song', (req,res) => {
 })
 
 // TODO - Add GET for songs
+
+app.post('/song', (req,res)=> {
+    console.log('Get Post for /song')
+    console.log('req.body',req.body)
+    let songToAdd = req.body
+    songListArray.push(songToAdd)
+    res.sendStatus(201)
+})
 
 app.listen(PORT, () => {
     console.log('listening on port', PORT)

@@ -31,6 +31,7 @@ function getSongs() {
         console.log(response)
         let songsFromSever = response.data
         let contentTable = document.querySelector('#songTableBody')
+        contentTable.innerHTML = ''
         for(let song of songsFromSever){
             contentTable.innerHTML += `
             <tr>
@@ -50,4 +51,20 @@ getSongs()
 function addSongs(event){
     event.preventDefault()
     console.log('submit is working')
+    let titleAdd = document.querySelector('#songInput').value
+    let songAdd = document.querySelector('#artistInput').value
+    console.log('inputs are ',titleAdd, songAdd)
+    let songForServer = {
+        title: titleAdd,
+        artist: songAdd,
+    }
+    console.log(songForServer)
+    axios.post('/song',songForServer).then((response)=>{
+    console.log(response)
+    getSongs()
+   })
 }
+
+
+
+
