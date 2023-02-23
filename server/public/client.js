@@ -25,3 +25,29 @@ function getArtists() {
 }
 // TODO Add ajax request for /songs and display on DOM
 getArtists();
+
+function getSongs() {
+    axios.get('/song').then((response)=> {
+        console.log(response)
+        let songsFromSever = response.data
+        let contentTable = document.querySelector('#songTableBody')
+        for(let song of songsFromSever){
+            contentTable.innerHTML += `
+            <tr>
+                <td>${song.title}</td>
+                <td>${song.artist}</td>
+            </tr>    
+            `
+        }
+    }).catch((error )=> {
+        console.log(error)
+        alert('Something Went Wrong')
+    })
+}
+
+getSongs()
+
+function addSongs(event){
+    event.preventDefault()
+    console.log('submit is working')
+}
